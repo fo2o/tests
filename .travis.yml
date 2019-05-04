@@ -41,7 +41,7 @@ matrix:
           packages:
             - clang-6.0 gcc-multilib g++-multilib
       env:
-         - MATRIX_EVAL="CC=clang-6 && CXX=clang++-6"
+         - MATRIX_EVAL="CC=clang-6.0 && CXX=clang++-6.0"
       compiler:
          - clang
     - os: linux
