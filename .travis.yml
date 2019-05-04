@@ -14,7 +14,7 @@ matrix:
         apt:
           sources:
             - ubuntu-toolchain-r-test
-            - llvm-toolchain-trusty-4.0
+            - llvm-toolchain-xenial-4.0
           packages:
             - clang-4.0 gcc-multilib g++-multilib
       env:
@@ -26,7 +26,7 @@ matrix:
         apt:
           sources:
             - ubuntu-toolchain-r-test
-            - llvm-toolchain-trusty-5.0
+            - llvm-toolchain-xenial-5.0
           packages:
             - clang-5.0 gcc-multilib g++-multilib
       env:
@@ -38,7 +38,7 @@ matrix:
         apt:
           sources:
             - ubuntu-toolchain-r-test
-            - llvm-toolchain-trusty-6.0
+            - llvm-toolchain-xenial-6.0
           packages:
             - clang-6.0 gcc-multilib g++-multilib
       env:
@@ -50,7 +50,7 @@ matrix:
         apt:
           sources:
             - ubuntu-toolchain-r-test
-            - llvm-toolchain-trusty-7
+            - llvm-toolchain-xenial-7
           packages:
             - clang-7 gcc-multilib g++-multilib
       env:
@@ -62,7 +62,7 @@ matrix:
         apt:
           sources:
             - ubuntu-toolchain-r-test
-            - llvm-toolchain-trusty-8
+            - llvm-toolchain-xenial-8
           packages:
             - clang-8 gcc-multilib g++-multilib
       env:
@@ -150,7 +150,7 @@ matrix:
         apt:
           sources:
             - ubuntu-toolchain-r-test
-            - llvm-toolchain-trusty-8
+            - llvm-toolchain-xenial-8
           packages:
             - clang-8 valgrind gcc-multilib g++-multilib
       before_install:
