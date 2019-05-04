@@ -13,11 +13,35 @@ matrix:
         apt:
           sources:
             - ubuntu-toolchain-r-test
-            - llvm-toolchain-trusty-6.0
+            - llvm-toolchain-trusty-4
           packages:
-            - clang-6.0 gcc-multilib g++-multilib
+            - clang-4 gcc-multilib g++-multilib
       env:
-         - MATRIX_EVAL="CC=clang-6.0 && CXX=clang++-6.0"
+         - MATRIX_EVAL="CC=clang-4 && CXX=clang++-4"
+      compiler:
+         - clang
+    - os: linux
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+            - llvm-toolchain-trusty-5
+          packages:
+            - clang-5 gcc-multilib g++-multilib
+      env:
+         - MATRIX_EVAL="CC=clang-5 && CXX=clang++-5"
+      compiler:
+         - clang
+    - os: linux
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+            - llvm-toolchain-trusty-6
+          packages:
+            - clang-6 gcc-multilib g++-multilib
+      env:
+         - MATRIX_EVAL="CC=clang-6 && CXX=clang++-6"
       compiler:
          - clang
     - os: linux
@@ -88,6 +112,17 @@ matrix:
          - MATRIX_EVAL="CC=gcc-8 && CXX=g++-8"
       compiler:
          - gcc
+    - os: linux
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - g++-9 gcc-9-multilib g++-9-multilib gcc-multilib g++-multilib
+      env:
+         - MATRIX_EVAL="CC=gcc-9 && CXX=g++-9"
+      compiler:
+         - gcc
     - stage: after UT
       name: valgrind
       compiler:
@@ -97,9 +132,9 @@ matrix:
           sources:
             - ubuntu-toolchain-r-test
           packages:
-            - g++-8 valgrind gcc-8-multilib g++-8-multilib gcc-multilib g++-multilib
+            - g++-9 valgrind gcc-9-multilib g++-9-multilib gcc-multilib g++-multilib
       before_install:
-         - MATRIX_EVAL="CC=gcc-8 && CXX=g++-8"
+         - MATRIX_EVAL="CC=gcc-9 && CXX=g++-9"
       script: 
         - cd REL64
         - valgrind --log-file=%pvalgrind.log -v -v --tool=memcheck --child-silent-after-fork=no --track-fds=yes --time-stamp=no --xml=no --num-callers=100 --error-exitcode=1 --fullpath-after=src/ --time-stamp=yes --leak-check=full --leak-resolution=high --show-leak-kinds=all --errors-for-leak-kinds=all --leak-check-heuristics=all --undef-value-errors=yes --show-mismatched-frees=yes --suppressions=../leak.supp --error-exitcode=2 ./logTesting ; (($? != 2)) && true
