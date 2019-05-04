@@ -15,7 +15,7 @@ matrix:
             - ubuntu-toolchain-r-test
             - llvm-toolchain-trusty-4
           packages:
-            - clang-4 gcc-multilib g++-multilib
+            - clang-4.0 gcc-multilib g++-multilib
       env:
          - MATRIX_EVAL="CC=clang-4 && CXX=clang++-4"
       compiler:
@@ -27,7 +27,7 @@ matrix:
             - ubuntu-toolchain-r-test
             - llvm-toolchain-trusty-5
           packages:
-            - clang-5 gcc-multilib g++-multilib
+            - clang-5.0 gcc-multilib g++-multilib
       env:
          - MATRIX_EVAL="CC=clang-5 && CXX=clang++-5"
       compiler:
@@ -39,7 +39,7 @@ matrix:
             - ubuntu-toolchain-r-test
             - llvm-toolchain-trusty-6
           packages:
-            - clang-6 gcc-multilib g++-multilib
+            - clang-6.0 gcc-multilib g++-multilib
       env:
          - MATRIX_EVAL="CC=clang-6 && CXX=clang++-6"
       compiler:
