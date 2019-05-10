@@ -52,15 +52,7 @@ install:
     - OLD_CXXFLAGS=$CXXFLAGS
     - OLD_CFLAGS=$CFLAGS
     - RESET_MATRIX="export LDFLAGS= && export CXXFLAGS=$OLD_CXXFLAGS && export CFLAGS=$OLD_CFLAGS"
-    - export BUILD_TYPE=Release && export BUILD_ARCH=32 && export CXXFLAGS="$CXXFLAGS -m32" && export CFLAGS="$CFLAGS -m32" && export LDFLAGS=-latomic;mkdir REL32;cd REL32;cmake ../ -DCMAKE_BUILD_TYPE=$BUILD_TYPE
-    - make
-    - cd ..
-    - eval "${RESET_MATRIX}"
     - export BUILD_TYPE=Release && export BUILD_ARCH=64;mkdir REL64;cd REL64;cmake ../ -DCMAKE_BUILD_TYPE=$BUILD_TYPE
-    - make
-    - cd ..
-    - eval "${RESET_MATRIX}"
-    - export BUILD_TYPE=Debug && export BUILD_ARCH=32 && export LIB_POSTFIX=d && export CXXFLAGS="$CXXFLAGS -m32" && export CFLAGS="$CFLAGS -m32" && export LDFLAGS=-latomic;mkdir DEB32;cd DEB32;cmake ../ -DCMAKE_BUILD_TYPE=$BUILD_TYPE
     - make
     - cd ..
     - eval "${RESET_MATRIX}"
@@ -81,16 +73,4 @@ before_script:
     obj:/lib/x86_64-linux-gnu/ld-2.19.so
     }' > leak.supp
 script:
-  - cd REL32 
-  - ./logTesting --gtest_output="xml:testresults.xml"
-  - cd ..
-  - cd REL64
-  - ./logTesting --gtest_output="xml:testresults.xml"
-  - cd ..
-  - cd DEB32
-  - ./logTesting --gtest_output="xml:testresults.xml"
-  - cd ..
-  - cd DEB64
-  - ./logTesting --gtest_output="xml:testresults.xml"
-  - cd ..
   - find . -name '*/testresults.xml' -print -exec cat {} \;
