@@ -8,11 +8,16 @@ TEST(PerformanceTest, TEST_LOAD_METHOD_NAME) {
     const char *msg2 = "and is going to success";
     auto start = std::chrono::high_resolution_clock::now();
     {
+        bool isPrinted=false;
         Logger log(xml, 0, LOG_CONCURRENCY_LEVEL);
         printf("t1");
         for (size_t i = 0; i < NUM_OF_MSG / 4; i++)
         {
             log.info(msg1);
+            if (!isPrinted){
+                printf("t3");
+                isPrinted=true;
+            }
             log.log(6, msg2);
             log.debug(msg1);
             log.log("info", msg2);
@@ -39,10 +44,15 @@ TEST(PerformanceTest, TEST_DELAY_METHOD_NAME) {
     const char *msg1 = "it is a test";
     const char *msg2 = "and is going to success";
         printf("t1");
+        bool isPrinted=false;
     auto sum = std::chrono::high_resolution_clock::duration::zero();
     for (size_t i = 0; i < NUM_OF_MSG / 4; i++) {
         auto a = std::chrono::high_resolution_clock::now();
         log.info(msg1);
+            if (!isPrinted){
+                printf("t3");
+                isPrinted=true;
+            }
         auto b = std::chrono::high_resolution_clock::now();
         sum += b - a;
         a = std::chrono::high_resolution_clock::now();
