@@ -41,6 +41,7 @@ namespace Sys
         }
         Sys::Logging::LoggerManager::~LoggerManager()
         {
+            printf("m1");
             isExit = true;
             for (size_t i = 0; i < workerThreads.size(); i++)
             {
@@ -53,6 +54,7 @@ namespace Sys
                     workers.join();
                 }
             }
+            printf("m2");
             while (!pData.isEmpty())
             {
                 LogData *data = pData.dequeue();
@@ -62,7 +64,9 @@ namespace Sys
                     delete data;
                 }
             }
+            printf("m3");
             printAllToOutput();
+            printf("m4");
         }
         void Sys::Logging::LoggerManager::log(Configuration *config,
                                               const UTF8 *level,
