@@ -1,5 +1,6 @@
 #if defined(TEST_LOAD_METHOD_NAME) && defined(TEST_DELAY_METHOD_NAME) && defined(LOG_CONCURRENCY_LEVEL) && defined(LOAD_THRESHOLD) && defined(DELAY_THRESHOLD)
 TEST(PerformanceTest, TEST_LOAD_METHOD_NAME) {
+    setbuf(stdout, NULL);
     XmlLogger xml;
     xml.load("Log.config");
     constexpr int NUM_OF_MSG = 40000;
@@ -30,6 +31,7 @@ TEST(PerformanceTest, TEST_LOAD_METHOD_NAME) {
     ASSERT_TRUE((double) NUM_OF_MSG / diff > msgPerMilisec);
 }
 TEST(PerformanceTest, TEST_DELAY_METHOD_NAME) {
+    setbuf(stdout, NULL);
     XmlLogger xml;
     xml.load("Log.config");
     Logger log(xml, 0, LOG_CONCURRENCY_LEVEL);
