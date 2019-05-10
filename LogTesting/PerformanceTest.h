@@ -8,6 +8,7 @@ TEST(PerformanceTest, TEST_LOAD_METHOD_NAME) {
     auto start = std::chrono::high_resolution_clock::now();
     {
         Logger log(xml, 0, LOG_CONCURRENCY_LEVEL);
+        printf("t1");
         for (size_t i = 0; i < NUM_OF_MSG / 4; i++)
         {
             log.info(msg1);
@@ -15,6 +16,7 @@ TEST(PerformanceTest, TEST_LOAD_METHOD_NAME) {
             log.debug(msg1);
             log.log("info", msg2);
         }
+        printf("t2");
     }
     auto end = std::chrono::high_resolution_clock::now();
     constexpr double msgPerMilisec = LOAD_THRESHOLD;
@@ -34,6 +36,7 @@ TEST(PerformanceTest, TEST_DELAY_METHOD_NAME) {
     constexpr int NUM_OF_MSG = 40000;
     const char *msg1 = "it is a test";
     const char *msg2 = "and is going to success";
+        printf("t1");
     auto sum = std::chrono::high_resolution_clock::duration::zero();
     for (size_t i = 0; i < NUM_OF_MSG / 4; i++) {
         auto a = std::chrono::high_resolution_clock::now();
@@ -53,6 +56,7 @@ TEST(PerformanceTest, TEST_DELAY_METHOD_NAME) {
         b = std::chrono::high_resolution_clock::now();
         sum += b - a;
     }
+        printf("t2");
     constexpr double delayInMili = DELAY_THRESHOLD;
     std::string error;
     error.append("Log delay test.\nthe delay is: ");
