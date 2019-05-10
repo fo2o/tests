@@ -149,8 +149,13 @@ namespace Sys
             }
             else
             {
+                int state=0;
                 while (numberOfWaitingLogs > logData.getConfig()->getMaxWaitingLogs())
                 {
+                    if (state==0){
+                        state=1;
+                        printf("l1");
+                    }
                     LogData* data;
                     data = this->pData.dequeue();
                     if (data)
@@ -162,6 +167,9 @@ namespace Sys
                     {
                         printAllToOutput();
                     }
+                }
+                if(state==1){
+                    printf("l2");
                 }
                 ++numberOfWaitingLogs;
                 LogData* pLogData = new LogData(std::move(logData));
