@@ -4,7 +4,7 @@ TEST(PerformanceTest, TEST_LOAD_METHOD_NAME) {
     xml.load("Log.config");
     #if RUNNING_ON_VALGRIND==1
     constexpr int NUM_OF_MSG = 4;
-    #elif
+    #else
     constexpr int NUM_OF_MSG = 40000;
     #endif
     const char *msg1 = "it is a test";
@@ -37,7 +37,7 @@ TEST(PerformanceTest, TEST_DELAY_METHOD_NAME) {
     Logger log(xml, 0, LOG_CONCURRENCY_LEVEL);
     #if RUNNING_ON_VALGRIND==1
     constexpr int NUM_OF_MSG = 4;
-    #elif
+    #else
     constexpr int NUM_OF_MSG = 40000;
     #endif
     const char *msg1 = "it is a test";
