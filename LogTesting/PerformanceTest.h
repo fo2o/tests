@@ -2,7 +2,11 @@
 TEST(PerformanceTest, TEST_LOAD_METHOD_NAME) {
     XmlLogger xml;
     xml.load("Log.config");
+    #if RUNNING_ON_VALGRIND==1
+    constexpr int NUM_OF_MSG = 4;
+    #elif
     constexpr int NUM_OF_MSG = 40000;
+    #endif
     const char *msg1 = "it is a test";
     const char *msg2 = "and is going to success";
     auto start = std::chrono::high_resolution_clock::now();
@@ -31,7 +35,11 @@ TEST(PerformanceTest, TEST_DELAY_METHOD_NAME) {
     XmlLogger xml;
     xml.load("Log.config");
     Logger log(xml, 0, LOG_CONCURRENCY_LEVEL);
+    #if RUNNING_ON_VALGRIND==1
+    constexpr int NUM_OF_MSG = 4;
+    #elif
     constexpr int NUM_OF_MSG = 40000;
+    #endif
     const char *msg1 = "it is a test";
     const char *msg2 = "and is going to success";
     auto sum = std::chrono::high_resolution_clock::duration::zero();
